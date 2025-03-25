@@ -10,10 +10,10 @@ TFT = ST7735.Display(sck=18,
                      miso=16,
                      cs=20,dc=14,
                      res=15,
-                     f=20000000)
+                     f=40000000)
 
-o = bytearray([0])
-m = bytearray([63*4])
+o = 0#bytearray([0])
+m = 63#bytearray([63*4])
 
 b = [o,o,o]
 w = [m,m,m]
@@ -40,7 +40,17 @@ def scale(val,f):
             
     return output
     
-TFT.SetBackground(b)
+TFT.color = p
+TFT.SetBackground()
+
+TFT.color = p
+TFT.SetBackground()
+
+TFT.color = p
+TFT.SetBackground()
+
+TFT.color = w
+TFT.SetBackground()
 
 text = """prueba de la pantalla numero dos"""
 
@@ -48,6 +58,8 @@ factor = 2
 
 x = 0
 y = 0
+
+
 
 for letter in text:
     px = Character(letters.index(letter.upper()),p,b)
@@ -60,3 +72,4 @@ for letter in text:
     TFT.UpdatePixel(scale(px,factor),[x*5*factor,y*5*factor+3*y])
     
     x+=1
+    
